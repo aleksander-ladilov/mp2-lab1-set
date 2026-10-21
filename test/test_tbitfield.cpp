@@ -1,6 +1,30 @@
 #include "tbitfield.h"
 
 #include <gtest.h>
+//3 new tests are below:
+TEST(TBitField, copied_bitfield_is_equal)
+{
+    TBitField bf1(10);
+    bf1.SetBit(3);
+
+    TBitField bf2(bf1);
+
+    EXPECT_EQ(bf1, bf2);
+}
+TEST(TBitField, can_create_copied_bitfield)
+{
+    TBitField bf1(10);
+
+    ASSERT_NO_THROW(TBitField bf2(bf1));
+}
+TEST(TBitField, and_with_itself)
+{
+    TBitField bf(10);
+    bf.SetBit(2);
+    bf.SetBit(7);
+
+    EXPECT_EQ(bf, bf & bf);
+}
 
 TEST(TBitField, can_create_bitfield_with_positive_length)
 {

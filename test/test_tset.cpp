@@ -2,6 +2,36 @@
 
 #include <gtest.h>
 
+
+//3 new tests are below:
+TEST(TSet, intersection_with_empty_set_is_empty)
+{
+	TSet set1(5), emptySet(5), result(5);
+	set1.InsElem(1);
+	set1.InsElem(3);
+
+	result = set1 * emptySet;
+
+	EXPECT_EQ(emptySet, result);
+}
+TEST(TBitField, clear_not_set_bit_keeps_it_zero)
+{
+	TBitField bf(10);
+
+	bf.ClrBit(4);
+
+	EXPECT_EQ(0, bf.GetBit(4));
+}
+TEST(TSet, union_with_empty_set)
+{
+	TSet set(5), emptySet(5), result(5);
+	set.InsElem(1);
+	set.InsElem(3);
+
+	result = set + emptySet;
+
+	EXPECT_EQ(set, result);
+}
 TEST(TSet, can_get_max_power_set)
 {
   const int size = 5;
